@@ -1,0 +1,52 @@
+<!-- <mat-card>
+    <mat-card-title>Login</mat-card-title>
+<mat-card-content>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Username" formControlName="email">
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+  </p>
+
+ 
+
+  <div class="button">
+    <button type="submit" mat-button>Login</button>
+  </div>
+
+</form>
+</mat-card-content>
+</mat-card> -->
+
+<div class="form-wraper">
+    <div class="form-container card">
+        <div class="form-header">
+            <mat-card-title>Login</mat-card-title>
+        </div>
+
+        <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
+            <mat-form-field class="justifier">
+                <input matInput placeholder="Email" text="email" class="form-input" formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="justifier">
+                <input matInput type="password" placeholder="Password" text="password" class="form-input"
+                    formControlName="password">
+            </mat-form-field>
+            
+            <div class="form-footer">
+                <button mat-raised-button class="btn custom-btn" (click)="submit()">
+                    <mat-icon>input</mat-icon> Login
+                </button>
+            </div>
+        </form>
+        <div class="additional-link">
+            <a routerLink="/signup">No Account? <strong>Create one here</strong></a>
+        </div>
+    </div>
+</div>
