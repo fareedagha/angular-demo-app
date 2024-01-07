@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { HelpersService } from 'src/app/services/helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService, private helpersService: HelpersService, private router: Router) { }
 
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -20,10 +22,26 @@ export class SignupComponent {
   submit() {
     if (this.form.valid) {
       const { email, password, name } = this.form.value;
-      this.authService.register({ name, email, password }).subscribe(res=>{
+      this.userService.register({ name, email, password }).subscribe(res=>{
         console.log(res,'....')
+        this.helpersService.openSnackBar('You have Succefully Registered','Undo',null)
+        this.router.navigate(["/login"]);
+      },err=>{
+        console.log('error', err)
+        if (err.error.details) {
+          err.error.details.forEach((err:any) => {
+            console.log('err', err)
+            this.helpersService.openSnackBar(err.message,'Undo',{
+              duration: 2000,
+              panelClass: ["style-error"]
+          })
+            
+          });
+        }
       });
 
     }
   }
+
+
 }

@@ -7,10 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const modules = [
   MatCardModule,
@@ -19,6 +21,7 @@ const modules = [
   MatToolbarModule,
   MatInputModule,
   MatCardModule,
+  MatSnackBarModule,
   MatMenuModule,
   MatIconModule,
   MatButtonModule,
@@ -26,6 +29,7 @@ const modules = [
   MatSlideToggleModule,
   MatSelectModule,
   MatOptionModule,
+  MatProgressSpinnerModule
 //   FormsModule
 ];
 

@@ -6,10 +6,10 @@ import { Login, Register } from './../interfaces/auth'
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService {
   constructor(private http: HttpClient) {
 
-    this.apiUrl = environment.apiUrl + '/auth';
+    this.apiUrl = environment.apiUrl + '/users';
   }
   apiUrl: string;
 
@@ -18,12 +18,9 @@ export class AuthService {
   get isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
-
-  login(data: Login): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, data);
+  register(data: Register): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
     // this.loggedIn.next(true);
   }
-  logout(): void {
-    this.loggedIn.next(false);
-  }
+
 }
