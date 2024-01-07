@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MatCardModule } from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     AuthRoutingModule,
     MatCardModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

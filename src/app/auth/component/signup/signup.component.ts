@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,16 +8,22 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+  constructor(private authService: AuthService) { }
+
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
     password: new FormControl(''),
-    confirmPassword:new FormControl('')
+    confirmPassword: new FormControl('')
   });
 
   submit() {
     if (this.form.valid) {
-      console.log(this.form.value)
+      const { email, password, name } = this.form.value;
+      this.authService.register({ name, email, password }).subscribe(res=>{
+        console.log(res,'....')
+      });
+
     }
   }
 }
