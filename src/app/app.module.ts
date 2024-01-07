@@ -21,7 +21,8 @@ import { LoaderInterceptor } from './interceptors/loader/loader.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     AuthModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ {

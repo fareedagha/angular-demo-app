@@ -11,7 +11,7 @@ export class HelpersService {
     private _snackBar: MatSnackBar
   ) { }
 
-  openSnackBar(message: string, action: string,option:any) {
+  openSnackBar(message: string, action: string,option:any = null) {
     this._snackBar.open(message, action,option);
   }
 

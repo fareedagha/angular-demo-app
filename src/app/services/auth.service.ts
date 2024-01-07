@@ -3,12 +3,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Login, Register } from './../interfaces/auth'
+import { DataService } from './data.service'
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private dataService: DataService) {
     this.apiUrl = environment.apiUrl + '/auth';
   }
   apiUrl: string;
@@ -23,7 +23,13 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, data);
     // this.loggedIn.next(true);
   }
+  // logout(): void {
+  //   this.loggedIn.next(false);
+  // }
+
   logout(): void {
+
+    this.dataService.removeData()
     this.loggedIn.next(false);
   }
 }

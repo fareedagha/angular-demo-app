@@ -24,7 +24,7 @@ export class SignupComponent {
       const { email, password, name } = this.form.value;
       this.userService.register({ name, email, password }).subscribe(res=>{
         console.log(res,'....')
-        this.helpersService.openSnackBar('You have Succefully Registered','Undo',null)
+        this.helpersService.openSnackBar('You have Succefully Registered','Undo')
         this.router.navigate(["/login"]);
       },err=>{
         console.log('error', err)
