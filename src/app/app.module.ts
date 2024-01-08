@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  import { MaterialModule } from './material.module';
-import { HomeComponent } from './home/home.component';
 import { AuthModule } from './auth/auth.module';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { LoaderInterceptor } from './interceptors/loader/loader.interceptor';
+import { PageModule } from './page/page.module';
+import { RouterModule, Routes } from '@angular/router';
+import { PagesComponent } from './page/page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,9 @@ import { LoaderInterceptor } from './interceptors/loader/loader.interceptor';
     BrowserAnimationsModule,
     AuthModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    PageModule,
+    RouterModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ {

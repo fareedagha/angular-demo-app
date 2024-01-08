@@ -19,7 +19,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 const GUARDS = [AuthGuard];
 
 export function filterInterceptorRequest(req: HttpRequest<any>): boolean {
-  return ['/login', '/sign-up', '/forgot-pass'].some(url => req.url.includes(url));
+  return ['/login', '/sign-up', '/forgot-password'].some(url => req.url.includes(url));
 }
 
 @NgModule({
