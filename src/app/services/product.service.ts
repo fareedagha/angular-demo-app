@@ -2,67 +2,50 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { AddProduct } from '../interfaces/product';
 // import { UserStore } from '../@core/stores/user.store';
 
-const qs = require('qs');
 
 @Injectable({
   providedIn: 'root'
 })
-export class ChargesService {
+export class ProductsService {
 
-//   apiUrl: string;
-  private chargeAddedSource = new Subject();
-  chargeAdded$ = this.chargeAddedSource.asObservable();
+  apiUrl: string;
+  private productAddedSource = new Subject();
+  productAdded$ = this.productAddedSource.asObservable();
 
   constructor(
     private http: HttpClient,
-    // private userStore: UserStore
   ) {
-    // this.apiUrl = environment.apiUrl + '/charges';
+    this.apiUrl = environment.apiUrl + '/products';
   }
 
-//   addCharge(data): Observable<any>{
-//     return this.http.post(this.apiUrl, data)
-//     .catch(this.errorHandler); 
-//   }
+  addProduct(data: AddProduct): Observable<any> {
+    return this.http.post(this.apiUrl, data)
+  }
 
-//   updateCharge(id, data): Observable<any>{
-//     return this.http.put(this.apiUrl + '/' + id, data)
-//     .catch(this.errorHandler);
-//   }
+  updateProduct(id: string, data: AddProduct): Observable<any> {
+    return this.http.put(this.apiUrl + '/' + id, data)
+  }
 
-//   getCharge(id): Observable<any>{
-//     return this.http.get(this.apiUrl + '/' + id)
-//     .catch(this.errorHandler);
-//   }
+  getProduct(id: string): Observable<any> {
+    return this.http.get(this.apiUrl + '/' + id)
+  }
 
-//   deleteCharge(id){
-//     return this.http.delete(this.apiUrl + '/' + id)
-//     .catch(this.errorHandler);
-//   }
+  deleteProduct(id: string) {
+    return this.http.delete(this.apiUrl + '/' + id)
+  }
 
-//   getCharges(params = null): Observable<any>{
-//     let query = '';
+  getProducts(params = null): Observable<any> {
+    let query = '';
 
-//     params = {
-//       ...params, 
-//       agencyId: this.userStore.getUser().agencyId
-//     };
+    return this.http.get(this.apiUrl + '?' + query)
+  }
 
-//     if(params){
-//       query = qs.stringify(params);
-//     }
-    
-//     return this.http.get(this.apiUrl + '?' + query)
-//     .catch(this.errorHandler);
-//   }
 
-//   errorHandler(errorRes: HttpErrorResponse){
-//     return Observable.throw(errorRes.error || 'Server error');
-//   }
-
-//   chargeAdded(data){
-//     this.chargeAddedSource.next(data);
-//   }
+  productAdded(data: AddProduct) {
+    this.productAddedSource.next(data);
+  }
 }

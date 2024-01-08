@@ -27,7 +27,7 @@ export class LoginComponent {
           duration: 3000
         })
       //  this.dataService.setData(res)
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/pages/products"]);
 
       }, err => {
         if (err.error.details) {
