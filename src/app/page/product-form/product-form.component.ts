@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HelpersService } from 'src/app/services/helper.service';
 import { ProductsService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -11,7 +13,13 @@ import { ProductsService } from 'src/app/services/product.service';
 export class ProductFormComponent {
   image: string = '';
   productForm: FormGroup;
-  constructor(private http: HttpClient, private fb: FormBuilder, private productService: ProductsService) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private productService: ProductsService,
+    private helpersService: HelpersService,
+    private router: Router
+  ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       image: ['', Validators.required],
@@ -30,7 +38,21 @@ export class ProductFormComponent {
           ...values,
           image: res.url
         }
-        this.productService.addProduct(payload).subscribe(res => console.log(res))
+        this.productService.addProduct(payload).subscribe(res => {
+          this.router.navigate(["/pages/products"]);
+        }, err => {
+          console.log('error', err)
+          if (err.error.details) {
+            err.error.details.forEach((err: any) => {
+              console.log('err', err)
+              this.helpersService.openSnackBar(err.message, 'Undo', {
+                duration: 2000,
+                panelClass: ["style-error"]
+              })
+
+            });
+          }
+        });
       })
       .catch((error) => {
         // Handle error
