@@ -55,6 +55,22 @@ export class ProductComponent {
 
   }
   onDelete(element: Product) {
-    this.dialog.openDialog({ message: 'Are you sure you want to delete this product?', title: 'Alert' }).subscribe(res => console.log())
+    this.dialog.openDialog({ message: 'Are you sure you want to delete this product?', title: 'Alert' }).subscribe(isConfirm => {
+      if (isConfirm) {
+        this.productService.deleteProduct(element._id).subscribe(res => {
+          this.getProducts()
+        }, err => {
+          if (err.error.details) {
+            err.error.details.forEach((err: any) => {
+              this.helpersService.openSnackBar(err.message, 'Undo', {
+                duration: 2000,
+                panelClass: ["style-error"]
+              })
+
+            });
+          }
+        });
+      }
+    })
   }
 }
