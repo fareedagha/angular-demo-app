@@ -10,11 +10,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
-    SidebarComponent
+    SidebarComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,8 +32,9 @@ import { MatListModule } from '@angular/material/list';
     RouterModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatDialogModule
   ],
-  exports:[
+  exports: [
     SidebarComponent
   ]
 })
