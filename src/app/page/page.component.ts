@@ -9,10 +9,10 @@ declare let $: any
 
 @Component({
   selector: 'ngx-pages',
-  styleUrls: [''],
+  styleUrls: [],
   template: `
     <div>
-      <router-outlet></router-outlet>
+      <app-sidebar></app-sidebar>
     </div>
   `,
 })
@@ -36,6 +36,7 @@ export class PagesComponent implements OnDestroy {
   }
 
   initMenu() {
+    console.log('>>>>>>>')
     // this.pagesMenu.getMenu()
     //   .pipe(takeWhile(() => this.alive))
     //   .subscribe(menu => {

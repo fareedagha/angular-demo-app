@@ -11,6 +11,7 @@ import { LoaderInterceptor } from './interceptors/loader/loader.interceptor';
 import { PageModule } from './page/page.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './page/page.component';
+import { ComponentModule } from './component/component.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PagesComponent } from './page/page.component';
     MaterialModule,
     HttpClientModule,
     PageModule,
-    RouterModule
+    RouterModule,
+    ComponentModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ {
