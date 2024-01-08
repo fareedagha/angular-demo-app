@@ -17,3 +17,8 @@ export interface Product {
     createdAt: string,
     _id: string
 }
+
+export interface ConfirmDialogData {
+    title: string;
+    message : string;
+}

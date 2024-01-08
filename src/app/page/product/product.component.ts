@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { ConfirmDialogComponent } from 'src/app/component/confirm-dialog/confirm-dialog.component';
 import { Product } from 'src/app/interfaces/product';
+import { DialogService } from 'src/app/services/dialog.service';
 import { HelpersService } from 'src/app/services/helper.service';
 import { ProductsService } from 'src/app/services/product.service';
 
@@ -11,7 +13,10 @@ import { ProductsService } from 'src/app/services/product.service';
 })
 export class ProductComponent {
   subs = new Subscription();
-  constructor(private productService: ProductsService, private helpersService: HelpersService) {
+  constructor(
+    private productService: ProductsService,
+    private helpersService: HelpersService,
+    private dialog: DialogService) {
   }
   displayedColumns: string[] = ['image', 'name', 'price', 'quantity', 'desc', 'SKU', 'actions'];
   dataSource: any = [];
@@ -50,6 +55,6 @@ export class ProductComponent {
 
   }
   onDelete(element: Product) {
-
+    this.dialog.openDialog({ message: 'Are you sure you want to delete this product?', title: 'Alert' }).subscribe(res => console.log())
   }
 }
