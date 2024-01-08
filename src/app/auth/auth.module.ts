@@ -12,6 +12,7 @@ import { SignupComponent } from './component/signup/signup.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 // Include the necessary imports for NB_AUTH_TOKEN_INTERCEPTOR_FILTER and NbAuthJWTInterceptor
 
@@ -22,7 +23,7 @@ export function filterInterceptorRequest(req: HttpRequest<any>): boolean {
 }
 
 @NgModule({
-  declarations: [LoginComponent, SignupComponent],
+  declarations: [LoginComponent, SignupComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

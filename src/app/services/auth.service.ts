@@ -23,6 +23,10 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, data);
     // this.loggedIn.next(true);
   }
+  forgotPassword(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/request-forgot-password`, data);
+    // this.loggedIn.next(true);
+  }
   // logout(): void {
   //   this.loggedIn.next(false);
   // }
