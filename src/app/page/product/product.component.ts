@@ -56,6 +56,11 @@ export class ProductComponent {
   onEdit(element: Product) {
     this.router.navigate([`/pages/product-form/${element._id}`])
   }
+
+
+  onView(element: Product) {
+    this.router.navigate([`/pages/view-product/${element._id}`])
+  }
   onDelete(element: Product) {
     this.dialog.openDialog({ message: 'Are you sure you want to delete this product?', title: 'Alert' }).subscribe(isConfirm => {
       if (isConfirm) {

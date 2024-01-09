@@ -4,6 +4,7 @@ import { PagesComponent } from './page.component';
 import { ProductComponent } from './product/product.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { ProductFormComponent } from './product-form/product-form.component';
+import { ViewProductComponent } from './view-product/view-product.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,9 @@ const routes: Routes = [
             { path: 'products', component: ProductComponent },
             { path: 'product-form', component: ProductFormComponent },
             { path: 'product-form/:id', component: ProductFormComponent },
+            { path: 'product-form/:id', component: ProductFormComponent },
+            { path: 'view-product/:id', component: ViewProductComponent },
+
             { path: 'wallet', component: WalletComponent },
 
         ]
