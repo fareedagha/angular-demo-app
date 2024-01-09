@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './page/page.component';
 import { ComponentModule } from './component/component.module';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { SocketioService } from './services/socketio.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     PageModule,
     RouterModule,
-    ComponentModule
+    ComponentModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -42,7 +43,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    SocketioService
   ],
   bootstrap: [AppComponent]
 })

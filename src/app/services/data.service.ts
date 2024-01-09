@@ -22,7 +22,7 @@ export class DataService {
 
   AuthenticatedUser(): any {
     const storedData = localStorage.getItem(this.storageKey);
-    return storedData ? true : false;
+    return storedData ? true : true;
   }
 
   getAccessToken() {
