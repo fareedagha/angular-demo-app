@@ -36,7 +36,6 @@ export class PagesComponent implements OnDestroy {
   }
 
   initMenu() {
-    console.log('>>>>>>>')
     // this.pagesMenu.getMenu()
     //   .pipe(takeWhile(() => this.alive))
     //   .subscribe(menu => {
