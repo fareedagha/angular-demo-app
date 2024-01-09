@@ -12,6 +12,7 @@ import { PageModule } from './page/page.module';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './page/page.component';
 import { ComponentModule } from './component/component.module';
+import { SocketioService } from './services/socketio.service';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,14 @@ import { ComponentModule } from './component/component.module';
     HttpClientModule,
     PageModule,
     RouterModule,
-    ComponentModule
+    ComponentModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [ {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
-    multi: true
-  }],
+    multi: true,
+  },SocketioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

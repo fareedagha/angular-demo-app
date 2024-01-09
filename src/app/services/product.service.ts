@@ -45,7 +45,7 @@ export class ProductsService {
   }
 
 
-  productAdded(data: AddProduct) {
+  productAdded(data: AddProduct | null) {
     this.productAddedSource.next(data);
   }
 }
