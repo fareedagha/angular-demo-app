@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class DataService {
-  private storageKey = 'auth_data';
+  private storageKey = 'accessToken';
 
   setData(data: any): void {
     localStorage.setItem(this.storageKey, JSON.stringify(data));
