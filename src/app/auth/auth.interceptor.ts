@@ -1,49 +1,43 @@
 import { Injectable } from '@angular/core';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { tap } from 'rxjs';
+import { DataService } from '../services/data.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router) {
+  constructor(private dataService: DataService, private router: Router) {
   }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
-    return next.handle(req)
-      .pipe(catchError((error: HttpErrorResponse) => {
-        
-        if (this.redirecToLogout(error)) {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = this.dataService.getAccessToken();
+    let requestItem = request;
+    if (token) {
+      requestItem = request.clone({
+        headers: request.headers.append('Authorization',
+          `Bearer ${token}`)
+      });
+    }
+    return next.handle(requestItem).pipe(tap((event: HttpEvent<any>) => {
+      if (event instanceof HttpResponse) {
+        // letting it pass
+      }
+    }, (err: any) => {
+      if (err instanceof HttpErrorResponse) {
+        if (err.status === 401) {
+          this.dataService.removeData();
           this.router.navigate(['/login']);
         }
-        // TODO: handle 403 error ?
-        return throwError(error);
-      }));
-  }
-
-  redirecToLogout(error:any){
-
-    if (error.status === 401 && error.error && error.error.error) {
-      if (error.error.error.code === 'UserNotConfirmedException') {
-        return false;
       }
-
-      if (error.error.error.code === "NotAuthorizedException") {
-        return false;
-      }
-
-      if (error.error.error.code === "CodeMismatchException") {
-        return false;
-      }
-      if (error.error.error.code === "AgencyDeactivated") {
-        return false;
-      }
-
-
-      return true;
-    }
-    return false;
+    }));
   }
 }
