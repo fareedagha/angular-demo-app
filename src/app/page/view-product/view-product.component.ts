@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ViewProductComponent {
   private routeSub: Subscription | undefined;
   id: string = '';
-  productData:any
+  product:any
 
   constructor(
     private productService: ProductsService,
@@ -33,8 +33,8 @@ export class ViewProductComponent {
   getProduct() {
     if (this.id) {
       this.productService.getProduct(this.id).subscribe(res => {
-        this.productData = res
-        console.log('productdata', this.productData)
+        this.product = res
+        console.log('productdata', this.product)
       }, err => {
         if (err.error.details) {
           err.error.details.forEach((err: any) => {
@@ -48,5 +48,7 @@ export class ViewProductComponent {
       });
     }
   }
-
+  onBack(){
+    this.router.navigate(['/pages/products'])
+  }
 }
