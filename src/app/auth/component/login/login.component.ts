@@ -26,7 +26,9 @@ export class LoginComponent {
         this.helpersService.openSnackBar('You have Succefully LogedIn', 'Undo',{
           duration: 3000
         })
-      //  this.dataService.setData(res)
+        if (res?.token?.access_token) {
+          this.dataService.setData(res.token.access_token);
+        }
         this.router.navigate(["/pages/products"]);
 
       }, err => {
