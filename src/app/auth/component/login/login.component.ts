@@ -23,10 +23,13 @@ export class LoginComponent {
     if (this.form.valid) {
       const { email, password } = this.form.value;
       this.authService.login({ email, password }).subscribe((res) => {
+        console.log("res", res)
+        if (res?.token) {
+          this.dataService.setData(res.token);
+        }
         this.helpersService.openSnackBar('You have Succefully LogedIn', 'Undo',{
-          duration: 3000
+          duration: 6000
         })
-      //  this.dataService.setData(res)
         this.router.navigate(["/pages/products"]);
 
       }, err => {
