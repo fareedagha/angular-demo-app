@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HelpersService } from 'src/app/services/helper.service';
 import { ProductsService } from 'src/app/services/product.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, retry } from 'rxjs';
+import { AddProduct } from 'src/app/interfaces/product';
 
 @Component({
   selector: 'app-product-form',
@@ -13,30 +15,94 @@ import { Router } from '@angular/router';
 export class ProductFormComponent {
   image: string = '';
   productForm: FormGroup;
+  private routeSub: Subscription | undefined;
+  id: string = ''
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
     private productService: ProductsService,
     private helpersService: HelpersService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
-      image: ['', Validators.required],
-      quantity: ['', Validators.required],
-      sku: ['', Validators.required],
+      image: [''],
+      quantity: [null, [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
+      sku: [null, [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
       desc: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(1000)])],
-      price: ['', Validators.compose([Validators.required])],
+      price: [null, [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]]
     });
   }
-  saveProduct(values: any) {
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.getProduct()
+    });
+  }
+
+  getProduct() {
+    if (this.id) {
+      this.productService.getProduct(this.id).subscribe(res => {
+        console.log('res', res)
+        this.productForm.patchValue(res)
+        console.log(this.productForm.value)
+      }, err => {
+        if (err.error.details) {
+          err.error.details.forEach((err: any) => {
+            this.helpersService.openSnackBar(err.message, 'Undo', {
+              duration: 2000,
+              panelClass: ["style-error"]
+            })
+
+          });
+        }
+      });
+    }
+  }
+  submitProduct() {
+    if (this.id) {
+      this.editProduct(this.id, this.productForm.value)
+    }
+    else {
+      this.saveProduct(this.productForm.value)
+
+    }
+  }
+  async editProduct(id: string, values: AddProduct) {
+    const res = await this.uploadImage(this.selectedFile)
+    console.log('url', res)
+    // Handle success
+    console.log('Image uploaded successfully:', res);
+    const payload = {
+      ...values,
+      image: res ? res?.url : values.image
+    }
+    this.productService.updateProduct(id, payload).subscribe(res => {
+      this.router.navigate(["/pages/products"]);
+    }, err => {
+      console.log('error', err)
+      if (err.error.details) {
+        err.error.details.forEach((err: any) => {
+          console.log('err', err)
+          this.helpersService.openSnackBar(err.message, 'Undo', {
+            duration: 2000,
+            panelClass: ["style-error"]
+          })
+
+        });
+      }
+    });
+
+  }
+  saveProduct(values: AddProduct) {
     this.uploadImage(this.selectedFile)
       .then((res) => {
         // Handle success
         console.log('Image uploaded successfully:', res);
         const payload = {
           ...values,
-          image: res.url
+          image: res?.url
         }
         this.productService.addProduct(payload).subscribe(res => {
           this.router.navigate(["/pages/products"]);
@@ -72,42 +138,14 @@ export class ProductFormComponent {
     this.image = optimizedImage;
 
   }
-  // uploadImage(event: any) {
-  //   // new method to send image in cloudinary with size reducing
-  //   const reader = new FileReader()
-  //   reader.readAsDataURL(event.target.files[0])
-
-  //   reader.onload = (event) => {
-
-  //     const imgElement: any = document.createElement("img");
-
-  //     imgElement.src = reader.result;
-
-  //     imgElement.onload = (e: any) => {
-
-  //       const canvas = document.createElement("canvas");
-  //       const max_width = 600;
-
-  //       const scaleSize = max_width / e.target.width;
-  //       canvas.width = max_width;
-  //       canvas.height = e.target.height * scaleSize;
-
-  //       const ctx: any = canvas.getContext("2d")
-  //       ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height)
-
-  //       const srcEncoded = ctx.canvas.toDataURL(e.target, "image/jpeg")
-
-  //       var that = this;
-  //       this.http.post('https://api.cloudinary.com/v1_1/dgfhv3nyx/image/upload', { file: srcEncoded, upload_preset: 'ml_default', folder: 'demo-images' }).subscribe((res: any) => {
-  //         console.log('res', res)
-  //         that.optimizeImage(res['secure_url']);
-  //       })
-  //     }
-
-  //   }
-  // }
+  removeImage() {
+    this.productForm.get('image')!.setValue('');
+  }
   uploadImage(value: any): Promise<any> {
     return new Promise((resolve, reject) => {
+      if (!value) {
+        resolve(undefined)
+      }
       const reader = new FileReader();
 
       reader.onload = (event) => {
@@ -132,7 +170,6 @@ export class ProductFormComponent {
             .subscribe(
               (res: any) => {
                 console.log('res', res);
-                this.optimizeImage(res['secure_url']);
                 resolve(res);
               },
               (error: any) => {

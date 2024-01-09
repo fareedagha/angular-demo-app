@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ConfirmDialogComponent } from 'src/app/component/confirm-dialog/confirm-dialog.component';
 import { Product } from 'src/app/interfaces/product';
 import { DialogService } from 'src/app/services/dialog.service';
 import { HelpersService } from 'src/app/services/helper.service';
@@ -16,7 +16,9 @@ export class ProductComponent {
   constructor(
     private productService: ProductsService,
     private helpersService: HelpersService,
-    private dialog: DialogService) {
+    private dialog: DialogService,
+    private router: Router
+  ) {
   }
   displayedColumns: string[] = ['image', 'name', 'price', 'quantity', 'desc', 'SKU', 'actions'];
   dataSource: any = [];
@@ -52,7 +54,12 @@ export class ProductComponent {
     )
   }
   onEdit(element: Product) {
+    this.router.navigate([`/pages/product-form/${element._id}`])
+  }
 
+
+  onView(element: Product) {
+    this.router.navigate([`/pages/view-product/${element._id}`])
   }
   onDelete(element: Product) {
     this.dialog.openDialog({ message: 'Are you sure you want to delete this product?', title: 'Alert' }).subscribe(isConfirm => {

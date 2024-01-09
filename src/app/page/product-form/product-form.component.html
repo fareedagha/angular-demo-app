@@ -1,67 +1,28 @@
-<!-- <div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
-            <form [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" placeholder="Enter Name" formControlName="name" required>
-                    <div class="alert-danger"
-                        *ngIf="!productForm.controls['name'].valid && (productForm.controls['name'].touched)">
-                        <div [hidden]="!productForm.controls['name'].errors?.['required']">
-                            Name is required.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Desc</label>
-                    <input type="text" class="form-control" placeholder="Description" formControlName="desc" required>
-                    <div class="alert-danger"
-                        *ngIf="!productForm.controls['desc'].valid && (productForm.controls['desc'].touched)">
-                        <div [hidden]="!productForm.controls['desc'].errors?.['required']">
-                            Description is required.
-                        </div>
-                        <div [hidden]="!productForm.controls['desc'].errors?.['minlength']">
-                            Description must be have 10 character length.
-                        </div>
-                        <div [hidden]="!productForm.controls['desc'].errors?.['maxlength']">
-                            Description must be have 1000 character length.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Price</label>
-                    <input type="number" class="form-control" placeholder="price" formControlName="price" required>
-                    <div class="alert-danger"
-                        *ngIf="!productForm.controls['price'].valid && (productForm.controls['price'].touched)">
-                        <div [hidden]="!productForm.controls['price'].errors?.['required']">
-                            Price is required.
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
-            </form>
-        </div>
-    </div>
-</div> -->
-<form class="form-body" [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
+<form class="form-body" [formGroup]="productForm" (ngSubmit)="submitProduct()">
     <mat-form-field class="justifier">
         <input matInput placeholder="Name" text="name" class="form-input" formControlName="name">
     </mat-form-field>
     <mat-form-field class="justifier">
-        <input matInput placeholder="Quantity" text="quantity" class="form-input" formControlName="quantity">
+        <input matInput placeholder="Quantity" text="quantity" class="form-input" type="number"
+            formControlName="quantity">
     </mat-form-field>
     <mat-form-field class="justifier">
-        <input matInput placeholder="sku" text="sku" class="form-input" formControlName="sku">
+        <input matInput placeholder="sku" text="sku" class="form-input" type="number" formControlName="sku">
     </mat-form-field>
     <mat-form-field class="justifier">
-        <input matInput placeholder="price" text="price" class="form-input" formControlName="price">
+        <input matInput placeholder="price" text="price" class="form-input" type="number" formControlName="price">
     </mat-form-field>
     <mat-form-field class="justifier">
-        <input matInput placeholder="desc" text="desc" class="form-input" formControlName="desc">
+        <input matInput placeholder="Description" text="desc" class="form-input" formControlName="desc">
     </mat-form-field>
-    <mat-form-field class="justifier">
+    <div *ngIf="id && productForm.value.image" class="image-div">
+        <div class="cancel" (click)="removeImage()">x</div>
+        <img width="70" height="70" style="padding: 5px;" [src]="productForm.value.image" alt="Image">
+    </div>
+    
+    <mat-form-field class="justifier" *ngIf="(!id || !productForm.value.image)">
         <input type="file" (change)="onFileSelected($event)"
-            class="absolute top-0 z-10 h-full w-full cursor-pointer opacity-0" #fileInput formControlName="image"
+            class="absolute top-0 z-10 h-full w-full cursor-pointer opacity-0" #fileInput  
             accept=".jpeg,.jpg,.png" />
         <input matInput cdkFocusInitial class="z-0" hidden />
         <mat-icon matSuffix class="mr-2" (click)="fileInput.click()">cloud_upload</mat-icon>
