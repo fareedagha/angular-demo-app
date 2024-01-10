@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorDetail } from 'src/app/interfaces/auth';
@@ -14,6 +16,8 @@ import { ProductsService } from 'src/app/services/product.service';
 })
 export class ProductComponent {
   subs = new Subscription();
+  @ViewChild('paginator') paginator: MatPaginator;
+
   constructor(
     private productService: ProductsService,
     private helpersService: HelpersService,
@@ -29,7 +33,8 @@ export class ProductComponent {
     'SKU',
     'actions',
   ];
-  dataSource: Product[] = [];
+  // dataSource: Product[] = [];
+  dataSource: MatTableDataSource<Product>;
 
   ngOnInit() {
     this.initEvents();
@@ -39,7 +44,11 @@ export class ProductComponent {
   getProducts() {
     this.productService.getProducts().subscribe(
       (res) => {
-        this.dataSource = res.data;
+        // this.dataSource = res.data;
+        this.dataSource = new MatTableDataSource(res.data);
+
+        this.dataSource.paginator = this.paginator;
+
       },
       (err) => {
         if (err.error.details) {
