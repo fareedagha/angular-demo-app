@@ -16,6 +16,7 @@ export interface Product {
     desc: string,
     image: string,
     createdAt: string,
+    createdByUserId:string,
     _id: string
 }
 
