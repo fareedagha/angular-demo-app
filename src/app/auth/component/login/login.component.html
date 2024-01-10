@@ -13,6 +13,8 @@
           class="form-input"
           formControlName="email"
         />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email format</mat-error>
       </mat-form-field>
       <mat-form-field class="justifier">
         <input
@@ -23,7 +25,10 @@
           class="form-input"
           formControlName="password"
         />
+        <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('pattern')">Password must be alphanumeric and at least 8 characters</mat-error>
       </mat-form-field>
+
 
       <div class="form-footer">
         <button mat-raised-button class="btn custom-btn" (click)="submit()">
