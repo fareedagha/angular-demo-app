@@ -26,7 +26,7 @@ export class AppComponent {
       'productAdded',
       (product: { data: Product }) => {
         const currentUser = this.dataService.getItem('user');
-        if (product.data?.createdByUserId !== currentUser?._id) {
+        if (currentUser && product.data?.createdByUserId !== currentUser?._id) {
           this.productsService.productAdded(null);
           if (this.router.url === '/pages/products') {
             this.helpersService.openSnackBar(
