@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { HelpersService } from 'src/app/services/helper.service';
 import { Router } from '@angular/router';
@@ -11,18 +11,28 @@ import { ErrorDetail } from 'src/app/interfaces/auth';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  constructor(
-    private userService: UserService,
+  form: FormGroup;
+  constructor(  private userService: UserService,
     private helpersService: HelpersService,
-    private router: Router
-  ) {}
-
-  form: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-  });
+    private router: Router,
+    private fb: FormBuilder) {
+    this.form = this.fb.group(
+      {
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/),
+          ],
+        ],
+        confirmPassword: ['', Validators.required],
+      },
+      { validator: this.passwordMismatchValidator }
+    );
+  }
 
   submit() {
     if (this.form.valid) {
@@ -31,7 +41,7 @@ export class SignupComponent {
         (res) => {
           console.log(res, '....');
           this.helpersService.openSnackBar(
-            'You have Succefully Registered',
+            'You have Successfully Registered',
             'Undo'
           );
           this.router.navigate(['/login']);
@@ -39,9 +49,9 @@ export class SignupComponent {
         (err) => {
           console.log('error', err);
           if (err.error.details) {
-            err.error.details.forEach((err: ErrorDetail) => {
-              console.log('err', err);
-              this.helpersService.openSnackBar(err.message, 'Undo', {
+            err.error.details.forEach((errorDetail: ErrorDetail) => {
+              console.log('err', errorDetail);
+              this.helpersService.openSnackBar(errorDetail.message, 'Undo', {
                 duration: 2000,
                 panelClass: ['style-error'],
               });
@@ -49,6 +59,22 @@ export class SignupComponent {
           }
         }
       );
+    }
+  }
+
+  passwordMismatchValidator(form: FormGroup) {
+    const passwordControl = form.get('password');
+    const confirmPasswordControl = form.get('confirmPassword');
+
+    if (passwordControl && confirmPasswordControl) {
+      const password = passwordControl.value;
+      const confirmPassword = confirmPasswordControl.value;
+
+      if (password !== confirmPassword) {
+        confirmPasswordControl.setErrors({ passwordMismatch: true });
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
     }
   }
 }

@@ -13,7 +13,11 @@
           class="form-input"
           formControlName="name"
         />
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field class="justifier">
         <input
           matInput
@@ -22,7 +26,14 @@
           class="form-input"
           formControlName="email"
         />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Please enter a valid email address
+        </mat-error>
       </mat-form-field>
+
       <mat-form-field class="justifier">
         <input
           matInput
@@ -32,6 +43,12 @@
           class="form-input"
           formControlName="password"
         />
+        <mat-error *ngIf="form.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('pattern')">
+          Password must be alphanumeric and at least 6 characters long
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="justifier">
@@ -43,10 +60,21 @@
           class="form-input"
           formControlName="confirmPassword"
         />
+        <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">
+          Confirm Password is required
+        </mat-error>
+        <mat-error *ngIf="form.get('confirmPassword')?.hasError('passwordMismatch') && form.get('confirmPassword')?.touched">
+            Passwords do not match
+          </mat-error>
+          
       </mat-form-field>
 
       <div class="form-footer">
-        <button mat-raised-button class="btn custom-btn">
+        <button
+          mat-raised-button
+          class="btn custom-btn"
+          [disabled]="form.invalid"
+        >
           <mat-icon>add</mat-icon> Signup
         </button>
       </div>

@@ -12,7 +12,7 @@
       <mat-grid-tile>
         <img
           mat-card-lg-image
-          [src]="product?.image"
+          [src]="product?.image || 'http://via.placeholder.com/640x360'"
           [title]="product?.name"
           class="product-detail-img"
       /></mat-grid-tile>
