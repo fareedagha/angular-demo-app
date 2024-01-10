@@ -7,16 +7,11 @@
 
   <button
     mat-icon-button
-    matTooltip="My Account"
-    [matMenuTriggerFor]="userAccountMenu"
+    matTooltip="Logout"
+    (click)="logout()"
   >
-    <mat-icon>account_circle</mat-icon>
+  <mat-icon>exit_to_app</mat-icon>
   </button>
-  <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>Logout
-    </button>
-  </mat-menu>
 </mat-toolbar>
 
 <mat-sidenav-container class="app-container">
