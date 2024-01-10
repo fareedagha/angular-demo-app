@@ -6,21 +6,19 @@ import { ConfirmDialogComponent } from '../component/confirm-dialog/confirm-dial
 import { ConfirmDialogData } from '../interfaces/product';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DialogService {
+  matDialog = inject(MatDialog);
 
-    matDialog = inject(MatDialog);
+  constructor() {}
 
-    constructor() { }
-
-
-    openDialog<T>(data: ConfirmDialogData): Observable<boolean> {
-
-        return this.matDialog.open(ConfirmDialogComponent, {
-            data: data,
-            disableClose: true,
-        }).afterClosed();
-
-    }
+  openDialog<T>(data: ConfirmDialogData): Observable<boolean> {
+    return this.matDialog
+      .open(ConfirmDialogComponent, {
+        data: data,
+        disableClose: true,
+      })
+      .afterClosed();
+  }
 }

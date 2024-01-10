@@ -1,28 +1,42 @@
-
 <div class="form-wraper">
-    <div class="form-container card">
-        <div class="form-header">
-            <mat-card-title>Login</mat-card-title>
-        </div>
-
-        <form class="form-body" [formGroup]="form">
-            <mat-form-field class="justifier">
-                <input matInput placeholder="Email" text="email" class="form-input" formControlName="email">
-            </mat-form-field>
-            <mat-form-field class="justifier">
-                <input matInput type="password" placeholder="Password" text="password" class="form-input"
-                    formControlName="password">
-            </mat-form-field>
-            
-            <div class="form-footer">
-                <button mat-raised-button class="btn custom-btn" (click)="submit()">
-                    <mat-icon>input</mat-icon> Login
-                </button>
-            </div>
-        </form>
-        <div class="additional-link">
-            <a routerLink="/signup">No Account? <strong>Create one here</strong></a> <br>
-            <a routerLink="/forgot-password">Or <strong>Forgot Your Password?</strong></a>
-        </div>
+  <div class="form-container card">
+    <div class="form-header">
+      <mat-card-title>Login</mat-card-title>
     </div>
+
+    <form class="form-body" [formGroup]="form">
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Email"
+          text="email"
+          class="form-input"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          text="password"
+          class="form-input"
+          formControlName="password"
+        />
+      </mat-form-field>
+
+      <div class="form-footer">
+        <button mat-raised-button class="btn custom-btn" (click)="submit()">
+          <mat-icon>input</mat-icon> Login
+        </button>
+      </div>
+    </form>
+    <div class="additional-link">
+      <a routerLink="/signup">No Account? <strong>Create one here</strong></a>
+      <br />
+      <a routerLink="/forgot-password"
+        >Or <strong>Forgot Your Password?</strong></a
+      >
+    </div>
+  </div>
 </div>

@@ -16,11 +16,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { SocketioService } from './services/socketio.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SpinnerComponent,
-    PagesComponent
-  ],
+  declarations: [AppComponent, SpinnerComponent, PagesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,15 +33,15 @@ import { SocketioService } from './services/socketio.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
-    SocketioService
+    SocketioService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

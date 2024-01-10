@@ -13,12 +13,8 @@ import { MatListModule } from '@angular/material/list';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-
 @NgModule({
-  declarations: [
-    SidebarComponent,
-    ConfirmDialogComponent
-  ],
+  declarations: [SidebarComponent, ConfirmDialogComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -32,10 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RouterModule,
     MatExpansionModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
   ],
-  exports: [
-    SidebarComponent
-  ]
+  exports: [SidebarComponent],
 })
-export class ComponentModule { }
+export class ComponentModule {}

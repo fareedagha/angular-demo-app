@@ -4,7 +4,8 @@ export interface AddProduct {
     quantity: number,
     sku: string,
     desc: string,
-    image: string
+    image: string,
+    createdByUserId:string
 }
 
 export interface Product {

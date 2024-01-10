@@ -1,36 +1,85 @@
 <form class="form-body" [formGroup]="productForm" (ngSubmit)="submitProduct()">
-    <mat-form-field class="justifier">
-        <input matInput placeholder="Name" text="name" class="form-input" formControlName="name">
-    </mat-form-field>
-    <mat-form-field class="justifier">
-        <input matInput placeholder="Quantity" text="quantity" class="form-input" type="number"
-            formControlName="quantity">
-    </mat-form-field>
-    <mat-form-field class="justifier">
-        <input matInput placeholder="sku" text="sku" class="form-input" type="number" formControlName="sku">
-    </mat-form-field>
-    <mat-form-field class="justifier">
-        <input matInput placeholder="price" text="price" class="form-input" type="number" formControlName="price">
-    </mat-form-field>
-    <mat-form-field class="justifier">
-        <input matInput placeholder="Description" text="desc" class="form-input" formControlName="desc">
-    </mat-form-field>
-    <div *ngIf="id && productForm.value.image" class="image-div">
-        <div class="cancel" (click)="removeImage()">x</div>
-        <img width="70" height="70" style="padding: 5px;" [src]="productForm.value.image" alt="Image">
-    </div>
-    
-    <mat-form-field class="justifier" *ngIf="(!id || !productForm.value.image)">
-        <input type="file" (change)="onFileSelected($event)"
-            class="absolute top-0 z-10 h-full w-full cursor-pointer opacity-0" #fileInput  
-            accept=".jpeg,.jpg,.png" />
-        <input matInput cdkFocusInitial class="z-0" hidden />
-        <mat-icon matSuffix class="mr-2" (click)="fileInput.click()">cloud_upload</mat-icon>
-        <mat-hint class="mat-form-field-hint-end">JPEG / JPG / PNG</mat-hint>
-    </mat-form-field>
-    <div class="form-footer">
-        <button mat-raised-button class="btn" type="submit" [disabled]="!productForm.valid">
-            Submit
-        </button>
-    </div>
+  <mat-form-field class="justifier">
+    <input
+      matInput
+      placeholder="Name"
+      text="name"
+      class="form-input"
+      formControlName="name"
+    />
+  </mat-form-field>
+  <mat-form-field class="justifier">
+    <input
+      matInput
+      placeholder="Quantity"
+      text="quantity"
+      class="form-input"
+      type="number"
+      formControlName="quantity"
+    />
+  </mat-form-field>
+  <mat-form-field class="justifier">
+    <input
+      matInput
+      placeholder="sku"
+      text="sku"
+      class="form-input"
+      type="number"
+      formControlName="sku"
+    />
+  </mat-form-field>
+  <mat-form-field class="justifier">
+    <input
+      matInput
+      placeholder="price"
+      text="price"
+      class="form-input"
+      type="number"
+      formControlName="price"
+    />
+  </mat-form-field>
+  <mat-form-field class="justifier">
+    <input
+      matInput
+      placeholder="Description"
+      text="desc"
+      class="form-input"
+      formControlName="desc"
+    />
+  </mat-form-field>
+  <div *ngIf="id && productForm.value.image" class="image-div">
+    <div class="cancel" (click)="removeImage()">x</div>
+    <img
+      width="70"
+      height="70"
+      style="padding: 5px"
+      [src]="productForm.value.image"
+      alt="Image"
+    />
+  </div>
+
+  <mat-form-field class="justifier" *ngIf="!id || !productForm.value.image">
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      class="absolute top-0 z-10 h-full w-full cursor-pointer opacity-0"
+      #fileInput
+      accept=".jpeg,.jpg,.png"
+    />
+    <input matInput cdkFocusInitial class="z-0" hidden />
+    <mat-icon matSuffix class="mr-2" (click)="fileInput.click()"
+      >cloud_upload</mat-icon
+    >
+    <mat-hint class="mat-form-field-hint-end">JPEG / JPG / PNG</mat-hint>
+  </mat-form-field>
+  <div class="form-footer">
+    <button
+      mat-raised-button
+      class="btn"
+      type="submit"
+      [disabled]="!productForm.valid"
+    >
+      Submit
+    </button>
+  </div>
 </form>

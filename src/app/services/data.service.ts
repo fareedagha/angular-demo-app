@@ -1,17 +1,18 @@
 // data.service.ts
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private storageKey = 'accessToken';
+  private storageKey = 'user';
 
-  setData(data: any): void {
+  setData(data: User): void {
     localStorage.setItem(this.storageKey, JSON.stringify(data));
   }
 
-  getData(): any {
+  getData(): User {
     const storedData = localStorage.getItem(this.storageKey);
     return storedData ? JSON.parse(storedData) : null;
   }
@@ -20,16 +21,17 @@ export class DataService {
     localStorage.removeItem(this.storageKey);
   }
 
-  AuthenticatedUser(): any {
+  AuthenticatedUser(): boolean {
     const storedData = localStorage.getItem(this.storageKey);
-    return storedData ? true : true;
+    return storedData ? true : false;
   }
 
-  getAccessToken() {
-    return this.getItem(this.storageKey);
+  getAccessToken(): string | undefined {
+    const user: User | null = this.getItem(this.storageKey);
+    return user?.token;
   }
 
-  getItem(key: string): string | null {
+  getItem(key: string): User | null {
     const value = localStorage.getItem(key);
     try {
       return value !== null ? JSON.parse(value) : null;
@@ -37,5 +39,4 @@ export class DataService {
       return null;
     }
   }
-
 }

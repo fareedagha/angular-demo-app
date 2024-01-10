@@ -11,10 +11,13 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { MaterialModule } from '../material.module';
 
-
-
 @NgModule({
-  declarations: [ProductComponent, ProductFormComponent, WalletComponent,ViewProductComponent],
+  declarations: [
+    ProductComponent,
+    ProductFormComponent,
+    WalletComponent,
+    ViewProductComponent,
+  ],
   imports: [
     CommonModule,
     PageRoutingModule,
@@ -22,7 +25,7 @@ import { MaterialModule } from '../material.module';
     ComponentModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
-  ]
+    MaterialModule,
+  ],
 })
-export class PageModule { }
+export class PageModule {}

@@ -11,7 +11,6 @@ import { LoaderService } from '../../services/loader.service';
 
 @Injectable()
 export class LoaderInterceptor implements HttpInterceptor {
-  
   constructor(private loaderService: LoaderService) {}
 
   intercept(
@@ -19,8 +18,8 @@ export class LoaderInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     this.loaderService.showLoader();
-    return next.handle(req).pipe(
-      finalize(() => this.loaderService.hideLoader())
-    );
+    return next
+      .handle(req)
+      .pipe(finalize(() => this.loaderService.hideLoader()));
   }
 }

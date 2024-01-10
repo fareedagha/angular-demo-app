@@ -11,13 +11,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { AuthGuard } from './auth.guard';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
-// Include the necessary imports for NB_AUTH_TOKEN_INTERCEPTOR_FILTER and NbAuthJWTInterceptor
-
 const GUARDS = [AuthGuard];
-
-// export function filterInterceptorRequest(req: HttpRequest<any>): boolean {
-//   return ['/login', '/sign-up', '/forgot-password'].some(url => req.url.includes(url));
-// }
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, ForgotPasswordComponent],
@@ -36,10 +30,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [
-        ...GUARDS,
-      ],
+      providers: [...GUARDS],
     };
   }
 }
-

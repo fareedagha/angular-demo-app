@@ -1,21 +1,21 @@
 .form-body {
-    .image-div{
-        position: relative;
-        width: 70px;
-        height: 70px;
-        .cancel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            background-color: red;
-            border-radius: 100px;
-            width:15px;
-            height:15px;
-            color: #fff;
-            right: -1px;
-            top: -3px;
-            cursor: pointer;
-        }
+  .image-div {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    .cancel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      background-color: red;
+      border-radius: 100px;
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      right: -1px;
+      top: -3px;
+      cursor: pointer;
     }
+  }
 }

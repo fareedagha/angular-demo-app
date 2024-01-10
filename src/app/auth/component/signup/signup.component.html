@@ -1,32 +1,58 @@
 <div class="form-wraper">
-    <div class="form-container card">
-        <div class="form-header">
-            <mat-card-title>Signup</mat-card-title>
-        </div>
-
-        <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
-            <mat-form-field class="justifier">
-                <input matInput placeholder="Name" text="name" class="form-input" formControlName="name">
-            </mat-form-field>
-            <mat-form-field class="justifier">
-                <input matInput placeholder="Email" text="email" class="form-input" formControlName="email">
-            </mat-form-field>
-            <mat-form-field class="justifier">
-                <input matInput type="password" placeholder="Password" text="password" class="form-input" formControlName="password">
-            </mat-form-field>
-
-            <mat-form-field class="justifier">
-                <input matInput type="password" placeholder="Confirm password" text="confirm password" class="form-input" formControlName="confirmPassword">
-            </mat-form-field>
-
-            <div class="form-footer">
-                <button mat-raised-button class="btn custom-btn">
-                    <mat-icon>add</mat-icon> Signup
-                </button>
-            </div>
-        </form>
-        <div class="additional-link">
-            <a routerLink="/login">Already have an Account? <strong>Login</strong></a>
-        </div>
+  <div class="form-container card">
+    <div class="form-header">
+      <mat-card-title>Signup</mat-card-title>
     </div>
+
+    <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Name"
+          text="name"
+          class="form-input"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Email"
+          text="email"
+          class="form-input"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          text="password"
+          class="form-input"
+          formControlName="password"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          type="password"
+          placeholder="Confirm password"
+          text="confirm password"
+          class="form-input"
+          formControlName="confirmPassword"
+        />
+      </mat-form-field>
+
+      <div class="form-footer">
+        <button mat-raised-button class="btn custom-btn">
+          <mat-icon>add</mat-icon> Signup
+        </button>
+      </div>
+    </form>
+    <div class="additional-link">
+      <a routerLink="/login">Already have an Account? <strong>Login</strong></a>
+    </div>
+  </div>
 </div>

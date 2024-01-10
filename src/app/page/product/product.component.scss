@@ -1,14 +1,14 @@
 .product-contianer {
-    padding: 10px;
-    .product-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        .title{
-            display: flex;
-            align-items: center;
-            margin: 0;
-        }
+  padding: 10px;
+  .product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    .title {
+      display: flex;
+      align-items: center;
+      margin: 0;
     }
+  }
 }
