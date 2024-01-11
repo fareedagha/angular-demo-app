@@ -3,11 +3,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ErrorDetail } from 'src/app/interfaces/auth';
+import { ErrorDetail, User } from 'src/app/interfaces/auth';
 import { Product } from 'src/app/interfaces/product';
 import { DialogService } from 'src/app/services/dialog.service';
 import { HelpersService } from 'src/app/services/helper.service';
 import { ProductsService } from 'src/app/services/product.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-product',
@@ -17,12 +18,15 @@ import { ProductsService } from 'src/app/services/product.service';
 export class ProductComponent {
   subs = new Subscription();
   @ViewChild('paginator') paginator: MatPaginator;
+  currentUser:User
 
   constructor(
     private productService: ProductsService,
     private helpersService: HelpersService,
     private dialog: DialogService,
-    private router: Router
+    private router: Router,
+    private dataService: DataService,
+
   ) {}
   displayedColumns: string[] = [
     'image',
@@ -37,12 +41,13 @@ export class ProductComponent {
   dataSource: MatTableDataSource<Product>;
 
   ngOnInit() {
+    let currentUser = this.dataService.getItem('user');
     this.initEvents();
-    this.getProducts();
+    this.getProducts(currentUser?._id);
   }
 
-  getProducts() {
-    this.productService.getProducts().subscribe(
+  getProducts(userId:string | undefined) {
+    this.productService.getProducts({userId:userId}).subscribe(
       (res) => {
         // this.dataSource = res.data;
         this.dataSource = new MatTableDataSource(res.data);
@@ -66,7 +71,7 @@ export class ProductComponent {
   initEvents() {
     this.subs.add(
       this.productService.productAdded$.subscribe(() => {
-        this.getProducts();
+        this.getProducts(this.currentUser?._id);
       })
     );
   }
@@ -87,7 +92,7 @@ export class ProductComponent {
         if (isConfirm) {
           this.productService.deleteProduct(element._id).subscribe(
             (res) => {
-              this.getProducts();
+              this.getProducts(this.currentUser?._id);
             },
             (err) => {
               if (err.error.details) {
