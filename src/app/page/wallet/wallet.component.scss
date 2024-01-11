@@ -1,28 +1,35 @@
 .walletCreated {
   padding: 16px;
-  width: 60%;
   margin: auto;
-  background-color: #f5f1ee;
   display: flex;
   flex-direction: column;
+  margin: 10px;
 }
 
 .main-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
+  table {
+    margin-bottom: 20px;
+  }
+  &>div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wallet-action{
+    display: flex;
+  }
 }
-
-.left-side,
-.right-side {
-  flex: 1;
-  padding: 10px;
+.ml-10 {
+  margin-left: 10px;
 }
 
 h3 {
   display: flex;
   font-weight: bold;
-  margin-left: 7rem;
 }
 
 span {
@@ -39,28 +46,15 @@ table {
   border-collapse: collapse;
 }
 
-.margin-left {
-  margin-left: 7rem;
-}
 td {
   padding: 10px 7rem 4px 0px;
   border-bottom: 1px solid grey;
 }
 
-.right-side {
-  text-align: center;
-  margin: 50px 0px 0px 100px;
-}
-
-.right-side button {
-  display: block;
-  margin: 14px 0;
-}
 .CreateWallet {
   padding: 2%;
   width: 60%;
   display: flex;
-  background-color: #f5f1ee;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -71,7 +65,6 @@ td {
   margin: 15px 0;
 
   .table-header {
-    background-color: #fafafa;
     border-right: 1px solid #f0f0f0;
     font-weight: 500;
   }
@@ -91,15 +84,4 @@ td {
 
 .green-color {
   color: green;
-}
-
-@media (max-width: 768px) {
-  .left-side,
-  .right-side {
-    flex: 1 100%;
-  }
-
-  h3 {
-    margin-left: 0;
-  }
 }
