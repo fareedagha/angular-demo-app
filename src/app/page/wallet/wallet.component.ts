@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ErrorDetail } from 'src/app/interfaces/auth';
 import { wallet } from 'src/app/interfaces/wallet';
+import { DialogService } from 'src/app/services/dialog.service';
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
@@ -33,7 +34,8 @@ export class WalletComponent {
     private router: Router,
     private route: ActivatedRoute,
     private dataService: DataService,
-    private transactionService: TransactionService
+    private transactionService: TransactionService,
+    private dialog:DialogService
   ) {}
 
   ngOnInit() {
@@ -82,5 +84,18 @@ export class WalletComponent {
       );
     }
   }
-
+openPaymentForm(isDeposit:boolean){
+  this.dialog
+  .openPaymentDialog({
+    isDeposit
+  })
+  .subscribe((isConfirm) => {
+    console.log('confirmmr',isConfirm)
+    if(isConfirm){
+      const currentUser = this.dataService.getItem('user');
+      this.getWallet(currentUser?._id);
+      this.getTransactions(currentUser?._id)
+    }
+  })
+}
 }

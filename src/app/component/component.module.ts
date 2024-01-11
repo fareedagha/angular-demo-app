@@ -12,9 +12,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SidebarComponent, ConfirmDialogComponent],
+  declarations: [SidebarComponent, ConfirmDialogComponent, PaymentFormComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -29,6 +33,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatExpansionModule,
     MatTooltipModule,
     MatDialogModule,
+    MatFormFieldModule,
+  MatInputModule,
+  FormsModule,
+  ReactiveFormsModule
+
   ],
   exports: [SidebarComponent],
 })

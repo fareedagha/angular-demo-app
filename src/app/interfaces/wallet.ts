@@ -7,3 +7,6 @@
     _id: string,
     userId: string
 }
+export interface PaymentDialogData {
+    isDeposit:boolean
+}

@@ -21,7 +21,6 @@ const modules = [
   MatInputModule,
   MatButtonModule,
   MatToolbarModule,
-  MatInputModule,
   MatCardModule,
   MatSnackBarModule,
   MatMenuModule,
