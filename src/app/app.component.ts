@@ -31,7 +31,7 @@ export class AppComponent {
           if (this.router.url === '/pages/products') {
             this.helpersService.openSnackBar(
               'A new product has been added and table is refreshed',
-              'Undo',
+              'Close',
               {
                 duration: 6000,
               }
@@ -39,7 +39,7 @@ export class AppComponent {
           } else {
             this.helpersService.openSnackBar(
               'A new product has been added.Kindly check the dashboard page',
-              'Undo',
+              'Close',
               {
                 duration: 6000,
               }

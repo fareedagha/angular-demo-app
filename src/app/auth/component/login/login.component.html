@@ -14,7 +14,7 @@
           formControlName="email"
         />
         <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email format</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">Please enter a valid email address</mat-error>
       </mat-form-field>
 
       <mat-form-field class="justifier">
@@ -28,7 +28,7 @@
         />
         <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
         <mat-error *ngIf="form.get('password')?.hasError('pattern')">
-          Password must be alphanumeric and at least 6 characters long
+          Password must be one UpperCase letter  and at least 6 characters long
         </mat-error>
       </mat-form-field>
 
@@ -40,7 +40,8 @@
     </form>
 
     <div class="additional-link">
-      <a routerLink="/signup">No Account? <strong>Create one here</strong></a>
+      <a routerLink="/signup">No Account? <strong>Create one here</strong></a> <br>
+      <a routerLink="/forgot-password"><strong>Forgot your Password?</strong></a>
     </div>
   </div>
 </div>

@@ -42,7 +42,7 @@ export class LoginComponent {
           }
           this.helpersService.openSnackBar(
             'You have Succefully LogedIn',
-            'Undo',
+            'Close',
             {
               duration: 6000,
             }
@@ -53,7 +53,7 @@ export class LoginComponent {
           if (err.error.details) {
             err.error.details.forEach((err: ErrorDetail) => {
               console.log('err', err);
-              this.helpersService.openSnackBar(err.message, 'Undo', {
+              this.helpersService.openSnackBar(err.message, 'Close', {
                 duration: 2000,
                 panelClass: ['style-error'],
               });

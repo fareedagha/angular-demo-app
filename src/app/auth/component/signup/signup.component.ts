@@ -42,7 +42,7 @@ export class SignupComponent {
           console.log(res, '....');
           this.helpersService.openSnackBar(
             'You have Successfully Registered',
-            'Undo'
+            'Close'
           );
           this.router.navigate(['/login']);
         },
@@ -51,7 +51,7 @@ export class SignupComponent {
           if (err.error.details) {
             err.error.details.forEach((errorDetail: ErrorDetail) => {
               console.log('err', errorDetail);
-              this.helpersService.openSnackBar(errorDetail.message, 'Undo', {
+              this.helpersService.openSnackBar(errorDetail.message, 'Close', {
                 duration: 2000,
                 panelClass: ['style-error'],
               });

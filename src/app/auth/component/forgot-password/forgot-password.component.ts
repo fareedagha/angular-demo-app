@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { HelpersService } from 'src/app/services/helper.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class ForgotPasswordComponent {
   message: string =
     "Check your inbox for the new password. If you don't receive an email, and it's not in your spam folder this could mean you signed up with a different address";
   form: FormGroup = new FormGroup({
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   submit() {
@@ -35,7 +35,7 @@ export class ForgotPasswordComponent {
           if (err.error.details) {
             err.error.details.forEach((err: ErrorDetail) => {
               console.log('err', err);
-              this.helpersService.openSnackBar(err.message, 'Undo', {
+              this.helpersService.openSnackBar(err.message, 'Close', {
                 duration: 2000,
                 panelClass: ['style-error'],
               });

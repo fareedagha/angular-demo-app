@@ -65,7 +65,7 @@ export class ProductFormComponent {
         (err) => {
           if (err.error.details) {
             err.error.details.forEach((err: ErrorDetail) => {
-              this.helpersService.openSnackBar(err.message, 'Undo', {
+              this.helpersService.openSnackBar(err.message, 'Close', {
                 duration: 2000,
                 panelClass: ['style-error'],
               });
@@ -100,7 +100,7 @@ export class ProductFormComponent {
         if (err.error.details) {
           err.error.details.forEach((err: ErrorDetail) => {
             console.log('err', err);
-            this.helpersService.openSnackBar(err.message, 'Undo', {
+            this.helpersService.openSnackBar(err.message, 'Close', {
               duration: 2000,
               panelClass: ['style-error'],
             });
@@ -128,7 +128,7 @@ export class ProductFormComponent {
             if (err.error.details) {
               err.error.details.forEach((err: ErrorDetail) => {
                 console.log('err', err);
-                this.helpersService.openSnackBar(err.message, 'Undo', {
+                this.helpersService.openSnackBar(err.message, 'Close', {
                   duration: 2000,
                   panelClass: ['style-error'],
                 });
