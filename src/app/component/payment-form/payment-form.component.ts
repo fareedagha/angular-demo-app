@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorDetail } from 'src/app/interfaces/auth';
 import { PaymentDialogData } from 'src/app/interfaces/wallet';
 import { DataService } from 'src/app/services/data.service';
+import { HelpersService } from 'src/app/services/helper.service';
 import { WalletService } from 'src/app/services/wallet.service';
 
 @Component({
@@ -13,7 +14,6 @@ import { WalletService } from 'src/app/services/wallet.service';
 })
 export class PaymentFormComponent {
   paymentForm: FormGroup;
-  helpersService: any;
 
   constructor(
     public dialogRef: MatDialogRef<PaymentDialogData>,
@@ -21,7 +21,8 @@ export class PaymentFormComponent {
 
     private fb: FormBuilder,
     private dataService: DataService,
-    private walletService: WalletService
+    private walletService: WalletService,
+    private helpersService: HelpersService
 
   ) { 
 
@@ -68,7 +69,7 @@ export class PaymentFormComponent {
             err.error.details.forEach((err: ErrorDetail) => {
               console.log('err', err);
               this.helpersService.openSnackBar(err.message, 'Close', {
-                duration: 2000,
+                duration: 6000,
                 panelClass: ['style-error'],
               });
             });
