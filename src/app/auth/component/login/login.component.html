@@ -13,10 +13,14 @@
           class="form-input"
           formControlName="email"
         />
-        <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('email')">Please enter a valid email address</mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('required')"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="form.get('email')?.hasError('email')"
+          >Please enter a valid email address</mat-error
+        >
       </mat-form-field>
-
+      
       <mat-form-field class="justifier">
         <input
           matInput
@@ -26,22 +30,31 @@
           class="form-input"
           formControlName="password"
         />
-        <mat-error *ngIf="form.get('password')?.hasError('required')">Password is required</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('required')"
+          >Password is required</mat-error
+        >
         <mat-error *ngIf="form.get('password')?.hasError('pattern')">
-          Password must be one UpperCase letter  and at least 6 characters long
+          Password must be one UpperCase letter and at least 6 characters long
         </mat-error>
       </mat-form-field>
 
       <div class="form-footer">
-        <button mat-raised-button class="btn custom-btn" [disabled]="form.invalid">
+        <button
+          mat-raised-button
+          class="btn custom-btn"
+          [disabled]="form.invalid"
+        >
           <mat-icon>input</mat-icon> Login
         </button>
       </div>
     </form>
 
     <div class="additional-link">
-      <a routerLink="/signup">No Account? <strong>Create one here</strong></a> <br>
-      <a routerLink="/forgot-password"><strong>Forgot your Password?</strong></a>
+      <a routerLink="/signup">No Account? <strong>Create one here</strong></a>
+      <br />
+      <a routerLink="/forgot-password"
+        ><strong>Forgot your Password?</strong></a
+      >
     </div>
   </div>
 </div>

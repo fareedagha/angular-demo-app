@@ -25,13 +25,13 @@ export class LoginComponent {
       Validators.required,
       Validators.minLength(6),
       Validators.pattern(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/),
-
     ]),
   });
 
   submit() {
-
-    Object.values(this.form.controls).forEach((control) => control.markAsTouched());
+    Object.values(this.form.controls).forEach((control) =>
+      control.markAsTouched()
+    );
     if (this.form.valid) {
       const { email, password } = this.form.value;
       this.authService.login({ email, password }).subscribe(

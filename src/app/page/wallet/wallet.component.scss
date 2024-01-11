@@ -1,0 +1,105 @@
+.walletCreated {
+  padding: 16px;
+  width: 60%;
+  margin: auto;
+  background-color: #f5f1ee;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.left-side,
+.right-side {
+  flex: 1;
+  padding: 10px;
+}
+
+h3 {
+  display: flex;
+  font-weight: bold;
+  margin-left: 7rem;
+}
+
+span {
+  margin: 5px;
+  color: orangered;
+  font-weight: bold;
+  font-size: x-large;
+}
+.value {
+  padding: 0px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.margin-left {
+  margin-left: 7rem;
+}
+td {
+  padding: 10px 7rem 4px 0px;
+  border-bottom: 1px solid grey;
+}
+
+.right-side {
+  text-align: center;
+  margin: 50px 0px 0px 100px;
+}
+
+.right-side button {
+  display: block;
+  margin: 14px 0;
+}
+.CreateWallet {
+  padding: 2%;
+  width: 60%;
+  display: flex;
+  background-color: #f5f1ee;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.table-contianer {
+  padding: 10px;
+  margin: 15px 0;
+
+  .table-header {
+    background-color: #fafafa;
+    border-right: 1px solid #f0f0f0;
+    font-weight: 500;
+  }
+
+  .mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #fafafa;
+  }
+
+  .table-body {
+    padding: 6px 16px;
+  }
+}
+
+.red-color {
+  color: red;
+}
+
+.green-color {
+  color: green;
+}
+
+@media (max-width: 768px) {
+  .left-side,
+  .right-side {
+    flex: 1 100%;
+  }
+
+  h3 {
+    margin-left: 0;
+  }
+}

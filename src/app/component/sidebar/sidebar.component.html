@@ -5,12 +5,8 @@
   <span>Product Demo</span>
   <span class="toolbar-item-spacer"></span>
 
-  <button
-    mat-icon-button
-    matTooltip="Logout"
-    (click)="logout()"
-  >
-  <mat-icon>exit_to_app</mat-icon>
+  <button mat-icon-button matTooltip="Logout" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
 
@@ -24,12 +20,16 @@
   >
     <mat-nav-list>
       <mat-list-item routerLink="/pages/products" class="mat-list-item">
-        <mat-icon>shopping_cart</mat-icon>
-        <span>Product</span>
+        <div class="responsive">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Product</span>
+        </div>
       </mat-list-item>
       <mat-list-item routerLink="/pages/wallet" class="mat-list-item">
-        <mat-icon>account_balance_wallet</mat-icon>
-        <span>Wallet</span>
+        <div class="responsive">
+          <mat-icon>account_balance_wallet</mat-icon>
+          <span>Wallet</span>
+        </div>
       </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>

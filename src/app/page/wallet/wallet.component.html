@@ -1,1 +1,74 @@
-<p>wallet works!</p>
+<div *ngIf="walletCreated" class="walletCreated">
+  Available Balance
+  <div class="main-container">
+    <div class="left-side">
+      <h3><span>$ 2,562.50</span></h3>
+      <table class="margin-left">
+        <tr>
+          <td>Deposit</td>
+          <td class="value">00</td>
+        </tr>
+        <tr>
+          <td>Withdraw</td>
+          <td class="value">00</td>
+        </tr>
+        <tr>
+          <td>Purchasing</td>
+          <td class="value">00</td>
+        </tr>
+      </table>
+    </div>
+    <div class="right-side">
+      <button mat-raised-button>Deposit</button>
+      <button mat-raised-button>Withdraw</button>
+    </div>
+  </div>
+</div>
+<div class="CreateWallet">
+  <button mat-raised-button *ngIf="!walletCreated">Create Wallet</button>
+</div>
+<div class="table-contianer">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Type Column -->
+    <ng-container matColumnDef="Type">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Type</th>
+      <td mat-cell *matCellDef="let element" class="table-body">
+        {{ element.Type }}
+      </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="Date">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Date</th>
+      <td mat-cell *matCellDef="let element" class="table-body">
+        {{ element.Date }}
+      </td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="Amount">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Amount</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="table-body"
+        [ngClass]="element.Type == 'TopUp' ? 'green-color' : 'red-color'"
+      >
+        {{ element.Amount }}
+      </td>
+    </ng-container>
+
+    <!-- Details Column -->
+    <ng-container matColumnDef="Details">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Details</th>
+      <td mat-cell *matCellDef="let element" class="table-body">
+        Transaction ID: {{ element.Details }} <br />Order Id:
+        {{ element.Order_Id }} <br />Deposit Method:
+        {{ element.Deposit_Method }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
