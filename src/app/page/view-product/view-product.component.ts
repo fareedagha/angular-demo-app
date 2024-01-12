@@ -59,7 +59,7 @@ export class ViewProductComponent {
   }
 
   
-  openCheckoutForm(productId:string,userId:string) {
+  openCheckoutForm(productId:string,userId:string | undefined) {
     this.dialog
       .openCheckoutDialog({
         productId,

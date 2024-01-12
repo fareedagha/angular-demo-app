@@ -11,7 +11,7 @@ export interface PaymentDialogData {
   isDeposit: boolean;
 }
 export interface CheckoutDialogData {
-  userId: string;
+  userId: string |undefined;
   productId:string;
 }
 
