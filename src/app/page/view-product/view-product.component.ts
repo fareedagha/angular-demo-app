@@ -3,7 +3,7 @@ import { HelpersService } from 'src/app/services/helper.service';
 import { ProductsService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
-import { ErrorDetail } from 'src/app/interfaces/auth';
+import { ErrorDetail, User } from 'src/app/interfaces/auth';
 import { DialogService } from 'src/app/services/dialog.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -17,7 +17,7 @@ export class ViewProductComponent {
   private routeSub: Subscription | undefined;
   id: string = '';
   product: Product | undefined;
-
+  currentUser: User | null;
   constructor(
     private productService: ProductsService,
     private helpersService: HelpersService,
@@ -28,6 +28,7 @@ export class ViewProductComponent {
   ) {}
 
   ngOnInit() {
+    this.currentUser = this.dataService.getItem('user');
     this.routeSub = this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.getProduct();
@@ -65,11 +66,9 @@ export class ViewProductComponent {
         userId
       })
       .subscribe((isConfirm) => {
-        console.log('confirmmr', isConfirm);
+        console.log('confirm', isConfirm);
         if (isConfirm) {
-          //const currentUser = this.dataService.getItem('user');
-          // this.getWallet(currentUser?._id);
-          // this.getTransactions(currentUser?._id);
+          this.getProduct();
         }
       });
   }

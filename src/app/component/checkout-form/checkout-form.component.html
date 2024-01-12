@@ -60,7 +60,7 @@
   <h2 mat-dialog-title>Checkout Form</h2>
 </div>
 <div mat-dialog-content>
-  <form class="form-body" [formGroup]="checkoutForm">
+  <form class="form-body" [formGroup]="checkoutForm" >
     <mat-form-field class="justifier">
       <input
         matInput
@@ -96,14 +96,14 @@
         placeholder="Address"
         text="Address"
         class="form-input"
-        formControlName="Address"
+        formControlName="address"
       />
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="!checkoutForm.valid">
+  <button mat-raised-button color="primary" (click)="submitForm()" [disabled]="!checkoutForm.valid">
     Submit
   </button>
 </div> 

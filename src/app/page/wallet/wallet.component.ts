@@ -19,6 +19,7 @@ export class WalletComponent {
     'Date',
     'Amount',
     'Status',
+    "Checkout Details",
     'Message',
     'Details',
   ];

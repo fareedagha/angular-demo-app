@@ -38,6 +38,13 @@ export class PaymentFormComponent {
     if (this.data.isDeposit) {
       this.walletService.topUp(payload).subscribe(
         (res) => {
+          this.helpersService.openSnackBar(
+            'You have successfully Top Up your amount!',
+            'Close',
+            {
+              duration: 4000,
+            }
+          );
           this.dialogRef.close(true);
         },
         (err) => {
@@ -56,6 +63,13 @@ export class PaymentFormComponent {
     } else {
       this.walletService.widthraw(payload).subscribe(
         (res) => {
+          this.helpersService.openSnackBar(
+            'You have successfully withdraw your amount!',
+            'Close',
+            {
+              duration: 4000,
+            }
+          );
           this.dialogRef.close(true);
         },
         (err) => {

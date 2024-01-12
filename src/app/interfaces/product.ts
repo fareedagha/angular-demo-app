@@ -24,3 +24,15 @@ export interface ConfirmDialogData {
   title: string;
   message: string;
 }
+
+export interface CheckoutFormData {
+  checkoutDetail: {
+    name: string,
+    email: string,
+    phone : number,
+    address: string
+  };
+  userId: string;
+  productId:string;
+}
+

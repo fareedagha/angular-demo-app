@@ -11,18 +11,22 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+
   table {
     margin-bottom: 20px;
   }
-  & > div {
+
+  &>div {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   .wallet-action {
     display: flex;
   }
 }
+
 .ml-10 {
   margin-left: 10px;
 }
@@ -38,6 +42,7 @@ span {
   font-weight: bold;
   font-size: x-large;
 }
+
 .value {
   padding: 0px;
 }
@@ -84,4 +89,9 @@ td {
 
 .green-color {
   color: green;
+}
+
+.checkout-detail {
+  font-size: 10px;
+  color: rgb(0 0 0 / 87%);
 }

@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AddProduct } from '../interfaces/product';
+import { AddProduct, CheckoutFormData } from '../interfaces/product';
 import { wallet } from '../interfaces/wallet';
 // import { UserStore } from '../@core/stores/user.store';
 
@@ -31,7 +31,7 @@ export class WalletService {
   topUp(data: wallet): Observable<any> {
     return this.http.post(`${this.apiUrl}/top-up`, data);
   }
-  buyProduct(data: wallet): Observable<any> {
+  buyProduct(data: CheckoutFormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/buy-ptoduct`, data);
   }
 
