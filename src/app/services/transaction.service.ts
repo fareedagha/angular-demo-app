@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddProduct } from '../interfaces/product';
 // import { UserStore } from '../@core/stores/user.store';
-import * as qs from "qs";
+import * as qs from 'qs';
 @Injectable({
   providedIn: 'root',
 })
@@ -34,9 +34,9 @@ export class TransactionService {
     return this.http.delete(this.apiUrl + '/' + id);
   }
 
-  getTransactions(params:any): Observable<any> {
+  getTransactions(params: any): Observable<any> {
     let query = qs.stringify(params);
-    console.log('querr', query)
+    console.log('querr', query);
     return this.http.get(this.apiUrl + '?' + query);
   }
 

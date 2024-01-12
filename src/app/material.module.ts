@@ -32,7 +32,7 @@ const modules = [
   MatOptionModule,
   MatProgressSpinnerModule,
   MatGridListModule,
-  MatPaginatorModule
+  MatPaginatorModule,
 ];
 
 @NgModule({

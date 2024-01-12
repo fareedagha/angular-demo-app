@@ -36,12 +36,11 @@ export class LoginComponent {
       const { email, password } = this.form.value;
       this.authService.login({ email, password }).subscribe(
         (res) => {
-          console.log('res', res);
           if (res?.user) {
             this.dataService.setData(res.user);
           }
           this.helpersService.openSnackBar(
-            'You have Succefully LogedIn',
+            'You have Successfully Logged In',
             'Close',
             {
               duration: 6000,

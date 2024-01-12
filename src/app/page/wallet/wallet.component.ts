@@ -14,7 +14,14 @@ import { DialogService } from 'src/app/services/dialog.service';
   styleUrls: ['./wallet.component.scss'],
 })
 export class WalletComponent {
-  displayedColumns: string[] = ['Type', 'Date', 'Amount', 'Status','Message', 'Details'];
+  displayedColumns: string[] = [
+    'Type',
+    'Date',
+    'Amount',
+    'Status',
+    'Message',
+    'Details',
+  ];
   dataSource = [];
   walletCreated: boolean = true;
   walletData: wallet = {
@@ -26,7 +33,7 @@ export class WalletComponent {
     userId: '',
   };
 
-  transactions =[]
+  transactions = [];
 
   constructor(
     private walletService: WalletService,
@@ -35,13 +42,13 @@ export class WalletComponent {
     private route: ActivatedRoute,
     private dataService: DataService,
     private transactionService: TransactionService,
-    private dialog:DialogService
+    private dialog: DialogService
   ) {}
 
   ngOnInit() {
     const currentUser = this.dataService.getItem('user');
     this.getWallet(currentUser?._id);
-    this.getTransactions(currentUser?._id)
+    this.getTransactions(currentUser?._id);
   }
   getWallet(userId: string | undefined) {
     if (userId) {
@@ -66,7 +73,7 @@ export class WalletComponent {
 
   getTransactions(userId: string | undefined) {
     if (userId) {
-      this.transactionService.getTransactions({userId:userId}).subscribe(
+      this.transactionService.getTransactions({ userId: userId }).subscribe(
         (res) => {
           this.dataSource = res.data;
           console.log('transactions', this.transactions);
@@ -84,18 +91,18 @@ export class WalletComponent {
       );
     }
   }
-openPaymentForm(isDeposit:boolean){
-  this.dialog
-  .openPaymentDialog({
-    isDeposit
-  })
-  .subscribe((isConfirm) => {
-    console.log('confirmmr',isConfirm)
-    if(isConfirm){
-      const currentUser = this.dataService.getItem('user');
-      this.getWallet(currentUser?._id);
-      this.getTransactions(currentUser?._id)
-    }
-  })
-}
+  openPaymentForm(isDeposit: boolean) {
+    this.dialog
+      .openPaymentDialog({
+        isDeposit,
+      })
+      .subscribe((isConfirm) => {
+        console.log('confirmmr', isConfirm);
+        if (isConfirm) {
+          const currentUser = this.dataService.getItem('user');
+          this.getWallet(currentUser?._id);
+          this.getTransactions(currentUser?._id);
+        }
+      });
+  }
 }

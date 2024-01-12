@@ -11,10 +11,16 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class SidebarComponent {
   isHandset: boolean;
 
-  constructor(private authService: AuthService, private router: Router,private breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
-      this.isHandset = result.matches;
-    });
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
+  ) {
+    this.breakpointObserver
+      .observe([Breakpoints.Handset])
+      .subscribe((result) => {
+        this.isHandset = result.matches;
+      });
   }
 
   logout() {

@@ -23,11 +23,11 @@ export class HelpersService {
   makeCamelCase(text: string) {
     var result = text
       .trim()
-      .toLowerCase() //lower case everything
+      .toLowerCase()
       .replace(
-        /([^A-Z0-9]+)(.)/gi, //match multiple non-letter/numbers followed by any character
+        /([^A-Z0-9]+)(.)/gi,
         function (match) {
-          return arguments[2].toUpperCase(); //3rd index is the character we need to transform uppercase
+          return arguments[2].toUpperCase();
         }
       );
     return result;

@@ -10,7 +10,7 @@ import { WalletService } from 'src/app/services/wallet.service';
 @Component({
   selector: 'app-payment-form',
   templateUrl: './payment-form.component.html',
-  styleUrls: ['./payment-form.component.scss']
+  styleUrls: ['./payment-form.component.scss'],
 })
 export class PaymentFormComponent {
   paymentForm: FormGroup;
@@ -23,25 +23,22 @@ export class PaymentFormComponent {
     private dataService: DataService,
     private walletService: WalletService,
     private helpersService: HelpersService
-
-  ) { 
-
-    this.paymentForm = this.fb.group({    
+  ) {
+    this.paymentForm = this.fb.group({
       amount: [
         null,
         [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)],
       ],
     });
-
   }
 
-  submitPay(){
+  submitPay() {
     const currentUser = this.dataService.getItem('user');
-    const payload = {...this.paymentForm.value, userId: currentUser?._id}
-    if(this.data.isDeposit){
+    const payload = { ...this.paymentForm.value, userId: currentUser?._id };
+    if (this.data.isDeposit) {
       this.walletService.topUp(payload).subscribe(
         (res) => {
-         this.dialogRef.close(true)
+          this.dialogRef.close(true);
         },
         (err) => {
           console.log('error', err);
@@ -56,12 +53,10 @@ export class PaymentFormComponent {
           }
         }
       );
-
-    }else{
-
+    } else {
       this.walletService.widthraw(payload).subscribe(
         (res) => {
-         this.dialogRef.close(true)
+          this.dialogRef.close(true);
         },
         (err) => {
           console.log('error', err);
@@ -76,11 +71,6 @@ export class PaymentFormComponent {
           }
         }
       );
-
     }
-
-
-
   }
-
 }

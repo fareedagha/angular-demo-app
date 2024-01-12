@@ -1,25 +1,24 @@
 export interface Register {
-    name: string,
-    email: string,
-    password: string
+  name: string;
+  email: string;
+  password: string;
 }
 export interface Login {
-    email: string,
-    password: string
+  email: string;
+  password: string;
 }
 export interface Forgotpassword {
-    email:string,
+  email: string;
 }
 
 export interface ErrorDetail {
-    message: string;
-    // Add other properties if necessary
+  message: string;
 }
 
 export interface User {
-    createdAt: string,
-    email: string,
-    name: string,
-    _id: string,
-    token: string
-} 
+  createdAt: string;
+  email: string;
+  name: string;
+  _id: string;
+  token: string;
+}

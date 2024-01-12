@@ -25,13 +25,13 @@ export class WalletService {
   getWalletByUserId(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/get-wallet-by-userId/${id}`);
   }
-  widthraw(data: any): Observable<any> {
+  widthraw(data: wallet): Observable<any> {
     return this.http.post(`${this.apiUrl}/withdraw`, data);
   }
-  topUp(data: any): Observable<any> {
+  topUp(data: wallet): Observable<any> {
     return this.http.post(`${this.apiUrl}/top-up`, data);
   }
-  buyProduct(data: any): Observable<any> {
+  buyProduct(data: wallet): Observable<any> {
     return this.http.post(`${this.apiUrl}/buy-ptoduct`, data);
   }
 

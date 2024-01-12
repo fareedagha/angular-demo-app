@@ -18,7 +18,11 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [SidebarComponent, ConfirmDialogComponent, PaymentFormComponent],
+  declarations: [
+    SidebarComponent,
+    ConfirmDialogComponent,
+    PaymentFormComponent,
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -34,10 +38,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatDialogModule,
     MatFormFieldModule,
-  MatInputModule,
-  FormsModule,
-  ReactiveFormsModule
-
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [SidebarComponent],
 })

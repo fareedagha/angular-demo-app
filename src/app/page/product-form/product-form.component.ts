@@ -184,14 +184,11 @@ export class ProductFormComponent {
           ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
           const srcEncoded = ctx.canvas.toDataURL('image/jpeg');
           this.http
-            .post(
-              'https://api.cloudinary.com/v1_1/dgfhv3nyx/image/upload',
-              {
-                file: srcEncoded,
-                upload_preset: 'ml_default',
-                folder: 'demo-images',
-              },
-            )
+            .post('https://api.cloudinary.com/v1_1/dgfhv3nyx/image/upload', {
+              file: srcEncoded,
+              upload_preset: 'ml_default',
+              folder: 'demo-images',
+            })
             .subscribe(
               (res: any) => {
                 console.log('res', res);

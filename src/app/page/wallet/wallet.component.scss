@@ -14,12 +14,12 @@
   table {
     margin-bottom: 20px;
   }
-  &>div{
+  & > div {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .wallet-action{
+  .wallet-action {
     display: flex;
   }
 }

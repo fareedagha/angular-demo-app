@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddProduct } from '../interfaces/product';
 // import { UserStore } from '../@core/stores/user.store';
-import * as qs from "qs";
+import * as qs from 'qs';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class ProductsService {
     return this.http.delete(this.apiUrl + '/' + id);
   }
 
-  getProducts(params:any): Observable<any> {
+  getProducts(params: any): Observable<any> {
     let query = qs.stringify(params);
     return this.http.get(this.apiUrl + '?' + query);
   }

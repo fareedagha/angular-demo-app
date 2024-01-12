@@ -1,18 +1,28 @@
 <div class="header">
-    <h2 mat-dialog-title>{{data.isDeposit?"Top Up Amount":"widthdraw Amount"  }}</h2>
-  </div>
-  <div mat-dialog-content>
-    <form class="form-body" [formGroup]="paymentForm" (ngSubmit)="submitPay()">
-        <mat-form-field  class="justifier">
-            <input matInput placeholder="Enter your amount"    formControlName="amount" class="form-input">
-        </mat-form-field>
-    </form>
-    </div>
-  <div mat-dialog-actions [align]="'end'">
-    <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="!paymentForm.valid"
-    (click)="submitPay()">
-      Submit
-    </button>
-  </div>
-  
+  <h2 mat-dialog-title>
+    {{ data.isDeposit ? "Top Up Amount" : "widthdraw Amount" }}
+  </h2>
+</div>
+<div mat-dialog-content>
+  <form class="form-body" [formGroup]="paymentForm" (ngSubmit)="submitPay()">
+    <mat-form-field class="justifier">
+      <input
+        matInput
+        placeholder="Enter your amount"
+        formControlName="amount"
+        class="form-input"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!paymentForm.valid"
+    (click)="submitPay()"
+  >
+    Submit
+  </button>
+</div>
