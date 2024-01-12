@@ -4,7 +4,7 @@ export interface wallet {
   totalWidraw: number;
   totalPurchase: number;
   _id: string;
-  userId: string;
+  userId: string | undefined;
 }
 
 export interface PaymentDialogData {

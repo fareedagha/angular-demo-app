@@ -32,7 +32,7 @@ export interface CheckoutFormData {
     phone : number,
     address: string
   };
-  userId: string;
+  userId: string | undefined;
   productId:string;
 }
 
