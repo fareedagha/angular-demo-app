@@ -41,7 +41,7 @@ export class PaymentFormComponent {
     if(this.data.isDeposit){
       this.walletService.topUp(payload).subscribe(
         (res) => {
-         this.dialogRef.close()
+         this.dialogRef.close(true)
         },
         (err) => {
           console.log('error', err);
@@ -49,7 +49,7 @@ export class PaymentFormComponent {
             err.error.details.forEach((err: ErrorDetail) => {
               console.log('err', err);
               this.helpersService.openSnackBar(err.message, 'Close', {
-                duration: 2000,
+                duration: 6000,
                 panelClass: ['style-error'],
               });
             });
@@ -61,7 +61,7 @@ export class PaymentFormComponent {
 
       this.walletService.widthraw(payload).subscribe(
         (res) => {
-         this.dialogRef.close()
+         this.dialogRef.close(true)
         },
         (err) => {
           console.log('error', err);
