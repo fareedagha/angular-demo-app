@@ -4,8 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ConfirmDialogComponent } from '../component/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogData } from '../interfaces/product';
-import { PaymentDialogData } from '../interfaces/wallet';
+import { CheckoutDialogData, PaymentDialogData } from '../interfaces/wallet';
 import { PaymentFormComponent } from '../component/payment-form/payment-form.component';
+import { CheckoutFormComponent } from '../component/checkout-form/checkout-form.component';
 
 @Injectable({
   providedIn: 'root',
@@ -32,4 +33,13 @@ export class DialogService {
       })
       .afterClosed();
   }
+  openCheckoutDialog<T>(data: CheckoutDialogData): Observable<boolean> {
+    return this.matDialog
+      .open(CheckoutFormComponent, {
+        data: data,
+        disableClose: true,
+      })
+      .afterClosed();
+  }
+  
 }

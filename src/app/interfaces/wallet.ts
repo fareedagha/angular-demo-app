@@ -10,4 +10,8 @@ export interface wallet {
 export interface PaymentDialogData {
   isDeposit: boolean;
 }
+export interface CheckoutDialogData {
+  userId: string;
+  productId:string;
+}
 

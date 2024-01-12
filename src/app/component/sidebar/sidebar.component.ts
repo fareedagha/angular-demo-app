@@ -20,6 +20,7 @@ export class SidebarComponent {
       .observe([Breakpoints.Handset])
       .subscribe((result) => {
         this.isHandset = result.matches;
+        
       });
   }
 

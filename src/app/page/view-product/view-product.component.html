@@ -40,6 +40,7 @@
             <div class="title">Description:</div>
             <div class="value">{{ product?.desc }}</div>
           </div>
+          <button  *ngIf="product" class="checkoutbtn" mat-raised-button (click)="openCheckoutForm(product._id,product.createdByUserId)">CheckOut</button>
         </div>
       </mat-grid-tile>
     </mat-grid-list>

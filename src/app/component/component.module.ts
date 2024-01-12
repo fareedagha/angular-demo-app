@@ -16,12 +16,14 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     ConfirmDialogComponent,
     PaymentFormComponent,
+    CheckoutFormComponent,
   ],
   imports: [
     CommonModule,

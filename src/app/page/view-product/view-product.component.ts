@@ -4,6 +4,8 @@ import { ProductsService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product';
 import { ErrorDetail } from 'src/app/interfaces/auth';
+import { DialogService } from 'src/app/services/dialog.service';
+import { DataService } from 'src/app/services/data.service';
 
 import { Subscription } from 'rxjs';
 @Component({
@@ -20,7 +22,9 @@ export class ViewProductComponent {
     private productService: ProductsService,
     private helpersService: HelpersService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: DialogService,
+    private dataService: DataService,
   ) {}
 
   ngOnInit() {
@@ -51,5 +55,22 @@ export class ViewProductComponent {
   }
   onBack() {
     this.router.navigate(['/pages/products']);
+  }
+
+  
+  openCheckoutForm(productId:string,userId:string) {
+    this.dialog
+      .openCheckoutDialog({
+        productId,
+        userId
+      })
+      .subscribe((isConfirm) => {
+        console.log('confirmmr', isConfirm);
+        if (isConfirm) {
+          //const currentUser = this.dataService.getItem('user');
+          // this.getWallet(currentUser?._id);
+          // this.getTransactions(currentUser?._id);
+        }
+      });
   }
 }

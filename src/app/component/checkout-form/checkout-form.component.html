@@ -1,0 +1,109 @@
+<!-- <div class="form-wraper">
+  <div class="form-container card">
+    <div class="form-header">
+      <h2 mat-dialog-title>Checkout Form</h2>
+    </div>
+
+    <form class="form-body" [formGroup]="checkoutForm">
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Name"
+          text="name"
+          class="form-input"
+          formControlName="name"
+        />
+      </mat-form-field>
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Email"
+          text="email"
+          class="form-input"
+          formControlName="email"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Phone Number"
+          text="phone Number"
+          class="form-input"
+          formControlName="phone"
+        />
+      </mat-form-field>
+      <mat-form-field class="justifier">
+        <input
+          matInput
+          placeholder="Address"
+          text="Address"
+          class="form-input"
+          formControlName="Address"
+        />
+      </mat-form-field>
+    </form>
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!checkoutForm.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div> -->
+
+<div class="header">
+  <h2 mat-dialog-title>Checkout Form</h2>
+</div>
+<div mat-dialog-content>
+  <form class="form-body" [formGroup]="checkoutForm">
+    <mat-form-field class="justifier">
+      <input
+        matInput
+        placeholder="Name"
+        text="name"
+        class="form-input"
+        formControlName="name"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="justifier">
+      <input
+        matInput
+        placeholder="Email"
+        text="email"
+        class="form-input"
+        formControlName="email"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="justifier">
+      <input
+        matInput
+        placeholder="Phone Number"
+        text="phone Number"
+        class="form-input"
+        formControlName="phone"
+      />
+    </mat-form-field>
+    <mat-form-field class="justifier">
+      <input
+        matInput
+        placeholder="Address"
+        text="Address"
+        class="form-input"
+        formControlName="Address"
+      />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button [mat-dialog-close]="false">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!checkoutForm.valid">
+    Submit
+  </button>
+</div> 
