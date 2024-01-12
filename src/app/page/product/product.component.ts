@@ -18,15 +18,14 @@ import { DataService } from 'src/app/services/data.service';
 export class ProductComponent {
   subs = new Subscription();
   @ViewChild('paginator') paginator: MatPaginator;
-  currentUser:User
+  currentUser: User | null;
 
   constructor(
     private productService: ProductsService,
     private helpersService: HelpersService,
     private dialog: DialogService,
     private router: Router,
-    private dataService: DataService,
-
+    private dataService: DataService
   ) {}
   displayedColumns: string[] = [
     'image',
@@ -41,19 +40,18 @@ export class ProductComponent {
   dataSource: MatTableDataSource<Product>;
 
   ngOnInit() {
-    let currentUser = this.dataService.getItem('user');
+    this.currentUser = this.dataService.getItem('user');
     this.initEvents();
-    this.getProducts(currentUser?._id);
+    this.getProducts(this.currentUser?._id);
   }
 
-  getProducts(userId:string | undefined) {
-    this.productService.getProducts({userId:userId}).subscribe(
+  getProducts(userId: string | undefined) {
+    this.productService.getProducts({ userId: userId }).subscribe(
       (res) => {
         // this.dataSource = res.data;
         this.dataSource = new MatTableDataSource(res.data);
 
         this.dataSource.paginator = this.paginator;
-
       },
       (err) => {
         if (err.error.details) {
